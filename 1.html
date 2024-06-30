@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>끝말잇기</title>
+</head>
+<body>
+    <div><span id="order">1</span>번쨰 참가자</div>
+    <div>제시어:<span id="word"></span></div> 
+    <input type="text">
+    <button>입력</button>
+</body>
+<script>
+    const number=Number(prompt("참가자는 몇 명인가요?, 최소 2 이상 입력해주세요."));
+    const $order=document.querySelector('#order');
+    const $word=document.querySelector('#word');
+    const $input=document.querySelector('input');
+    const $button=document.querySelector('button');
+    let new_word;
+    let word;
+    const onClickButton=()=>{
+
+        if(!word || word[word.length-1]===new_word[0]){
+            word=new_word
+        }
+        else{
+            alert("틀렸습니다 게임을 종료합니다.");
+            location.reload(true);//화면 새로고침, 새로 게임 시작하기 위해
+            return;
+        }
+        order+=1
+        if(order>number){
+            order=1
+        }
+        $order.textContent=order;
+        $word.textContent=word;
+        $input.value='';//입력창 비우기
+        $input.focus();//커서 위치 변경
+    }
+    const onInput=(e)=>{
+        new_word=e.target.value;
+    };
+    let order=Number($order.textContent);
+    $input.addEventListener('input',onInput);
+    $button.addEventListener('click', onClickButton);
+    
+</script>
+</html>
