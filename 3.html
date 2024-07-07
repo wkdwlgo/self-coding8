@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자야구</title>
+</head>
+<body>
+    <form id="form">
+        <input type="text" id="input">
+        <button>확인</button>
+    </form>
+    <div id="logs"></div>
+</body>
+<script>
+    const $input=document.querySelector('#input');
+    const $form=document.querySelector('#form');
+    const $logs=document.querySelector('#logs');
+    var strike=0;
+    var ball=0;
+    var answer='';
+    var arr=[];
+    var randomIndex;
+    //1. 무작위로 숫자 4개를 뽑는다. (중복x)
+    
+    //1-1. arr에 0~9 숫자들을 집어 넣는다. 
+    for (var i=0; i<=9; i++){
+        arr.push(i)
+    }
+    
+    for (var j=0; j<4; j++){
+        //1-2. index를 random 함수로 뽑는다.
+        randomIndex=Math.floor(Math.random() * 10)
+        console.log(randomIndex)
+        //1-3. arr[index]를 answer에 붙인다. 
+        answer+=String(arr[randomIndex]);
+        //1-4. 뽑힌 index는 arr에서 뺀다.
+        arr.splice(randomIndex,1)
+        console.log(arr)
+    }
+    console.log(answer)
+    //입력했을때 숫자가 아니거나 4자리 수가 아니거나 중복이 허용되는 숫자나열이라면 => error
+    //2. 입력한 값의 수와 자리가 같다면 스트라이크
+    //3. 입력한 값의 수만 같다면 홈런
+    //스트라이크, 볼-스트라이크=볼
+    //4. 다 맞으면 홈런
+    //10번안에 홈런이 나오면 => 성공
+    //아니면 => 실패(답을 알려줌, 새로고침)
+</script>
+</html>
